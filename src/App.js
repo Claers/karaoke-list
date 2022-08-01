@@ -17,12 +17,61 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  getCategory(category) {
+    if (category === "AN") {
+      return "Anime";
+    } else if (category === "JV") {
+      return "Jeux Vidéo";
+    } else if (category === "JV") {
+      return "Jeux Vidéo";
+    } else if (category === "M") {
+      return "Musique";
+    } else if (category === "D") {
+      return "Disney";
+    } else if (category === "S") {
+      return "Serie";
+    } else if (category === "F") {
+      return "Film";
+    }
+    return category;
+  }
+
+  getLanguage(language) {
+    if (language === "JP") {
+      return "Japonais";
+    } else if (language === "VF") {
+      return "Français";
+    } else if (language === "EN") {
+      return "Anglais";
+    } else if (language === "KR") {
+      return "Koréen";
+    }
+    return language;
+  }
+
+
+  modifyData(data) {
+    var musics = [];
+    for (var i = 0; i < data.length; i++) {
+      var music = data[i];
+      var musicData = {
+        category: this.getCategory(music[0]),
+        serie: music[1],
+        name: music[2],
+        artist: music[3],
+        language: this.getLanguage(music[4]),
+        vocal: music[5],
+      }
+      musics.push(musicData);
+    }
+    return musics;
+  }
 
   async fetchAllMusics() {
-    var musics = [[]];
     const resp = await fetch("https://ncloud.meytis.fr/s/7kg6XcRgFFyWT3m/download/musics.json");
     const data = await resp.json();
-    musics = data.musics;
+    var musics = this.modifyData(data.musics);
+    console.log(musics);
     return musics;
   }
 
@@ -76,7 +125,7 @@ class App extends React.Component {
                 </select>
               </div>
               <div class="col">
-                <label>Par Nom</label>
+                <label>Par Titre</label>
                 <input type="text" class="form-control" name="name" value={this.state.name} onChange={this.handleChange}></input>
               </div>
               <div class="col">
@@ -111,28 +160,31 @@ class App extends React.Component {
           <table class="table">
             <thead>
               <tr>
-                {this.state.musics[0].map((item, index) => {
-                  return <th key={index}>{item}</th>;
-                })}
+                <th key={this.state.musics[0].category}>{this.state.musics[0].category}</th>
+                <th key={this.state.musics[0].serie}>{this.state.musics[0].serie}</th>
+                <th key={this.state.musics[0].name}>{this.state.musics[0].name}</th>
+                <th key={this.state.musics[0].artist}>{this.state.musics[0].artist}</th>
+                <th key={this.state.musics[0].language}>{this.state.musics[0].language}</th>
+                <th key={this.state.musics[0].vocal}>{this.state.musics[0].vocal}</th>
               </tr>
             </thead>
             <tbody>
               {this.state.musics.slice(1, this.state.musics.length).filter(
-                music => music[1].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.state.serie.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) &&
-                  music[2].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.state.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) &&
-                  music[3].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.state.artist.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) &&
-                  music[4].includes(this.state.language) &&
-                  music[5].includes(this.state.vocal) &&
-                  music[0].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.state.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+                music => music.serie.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.state.serie.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) &&
+                  music.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.state.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) &&
+                  music.artist.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.state.artist.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) &&
+                  music.language.includes(this.state.language) &&
+                  music.vocal.includes(this.state.vocal) &&
+                  music.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.state.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
               ).map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td>{item[0]}</td>
-                    <td>{item[1]}</td>
-                    <td>{item[2]}</td>
-                    <td>{item[3]}</td>
-                    <td>{item[4]}</td>
-                    <td>{item[5]}</td>
+                    <td>{item.category}</td>
+                    <td>{item.serie}</td>
+                    <td>{item.name}</td>
+                    <td>{item.artist}</td>
+                    <td>{item.language}</td>
+                    <td>{item.vocal}</td>
                   </tr>
                 );
               })}

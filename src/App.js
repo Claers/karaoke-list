@@ -22,8 +22,8 @@ class App extends React.Component {
       return "Anime";
     } else if (category === "JV") {
       return "Jeux Vidéo";
-    } else if (category === "JV") {
-      return "Jeux Vidéo";
+    } else if (category === "DA") {
+      return "Dessin Animé";
     } else if (category === "M") {
       return "Musique";
     } else if (category === "D") {
@@ -39,9 +39,9 @@ class App extends React.Component {
   getLanguage(language) {
     if (language === "JP") {
       return "Japonais";
-    } else if (language === "VF") {
+    } else if (language === "FR") {
       return "Français";
-    } else if (language === "EN") {
+    } else if (language === "AN") {
       return "Anglais";
     } else if (language === "KR") {
       return "Koréen";

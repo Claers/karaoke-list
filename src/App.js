@@ -45,6 +45,10 @@ class App extends React.Component {
       return "Anglais";
     } else if (language === "KR") {
       return "Koréen";
+    } else if (language === "MUL") {
+      return "Multilangue";
+    } else if (language === "GER") {
+      return "GER";
     }
     return language;
   }
@@ -68,7 +72,8 @@ class App extends React.Component {
   }
 
   async fetchAllMusics() {
-    const resp = await fetch("https://ncloud.meytis.fr/s/7kg6XcRgFFyWT3m/download/musics.json");
+    // const resp = await fetch("https://ncloud.meytis.fr/s/7kg6XcRgFFyWT3m/download/musics.json");
+    const resp = await fetch("https://ncloud.meytis.fr/s/GXwb9Pe95MJW3Gf/download/musics.json");
     const data = await resp.json();
     var musics = this.modifyData(data.musics);
     console.log(musics);
@@ -143,6 +148,8 @@ class App extends React.Component {
                   <option value="Français">Français</option>
                   <option value="Anglais">Anglais</option>
                   <option value="Japonais">Japonais</option>
+                  <option value="Allemand">Allemand</option>
+                  <option value="Multilangue">Multilangue</option>
                 </select>
               </div>
               <div class="col">

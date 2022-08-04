@@ -109,14 +109,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div class="text-center">
+      <div class="container" style={{ maxWidth: "100%" }}>
+        <div class="row text-center">
           <h1>Liste des musiques</h1>
         </div>
-        <div>
+        <div class="row">
           <form>
             <div class="row">
-              <div class="col">
+              <div class="col-12 col-lg-2">
                 <label>Catégorie</label>
                 <select name="category" value={this.state.category} onChange={this.handleChange} class="form-select" aria-label="Category">
                   <option value="" selected>Tous</option>
@@ -129,19 +129,19 @@ class App extends React.Component {
                   <option value="Musique">Musique</option>
                 </select>
               </div>
-              <div class="col">
+              <div class="col-12 col-lg-2">
                 <label>Par Titre</label>
                 <input type="text" class="form-control" name="name" value={this.state.name} onChange={this.handleChange}></input>
               </div>
-              <div class="col">
+              <div class="col-12 col-lg-2">
                 <label>Par Serie</label>
                 <input type="text" class="form-control" name="serie" value={this.state.serie} onChange={this.handleChange}></input>
               </div>
-              <div class="col">
+              <div class="col-12 col-lg-2">
                 <label>Par Artiste</label>
                 <input type="text" class="form-control" name="artist" value={this.state.artist} onChange={this.handleChange}></input>
               </div>
-              <div class="col">
+              <div class="col-12 col-lg-2">
                 <label>Langue</label>
                 <select name="language" value={this.state.language} onChange={this.handleChange} class="form-select" aria-label="Langue">
                   <option value="" selected>Tous</option>
@@ -152,7 +152,7 @@ class App extends React.Component {
                   <option value="Multilangue">Multilangue</option>
                 </select>
               </div>
-              <div class="col">
+              <div class="col-12 col-lg-2">
                 <label>Vocals</label>
                 <select name="vocal" value={this.state.vocal} onChange={this.handleChange} class="form-select" aria-label="Vocal">
                   <option value="" selected>Tous</option>

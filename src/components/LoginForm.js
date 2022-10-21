@@ -55,8 +55,8 @@ function LoginForm() {
             <div className="forgot-pass">
               {/* <a href="#">Forgot Password?</a> */}
             </div>
-            <div className="btn btn-outline-info">
-              <button type="submit">login</button>
+            <div >
+              <button className="btn btn-primary" type="submit">Login</button>
             </div>
             <div className="signup-link">
               {/* Not a member? <a href="#">Signup now</a> */}

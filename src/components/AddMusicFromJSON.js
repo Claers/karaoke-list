@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../styles/JSONForm.css';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { createBatchMusics } from '../services/api';
@@ -8,7 +8,7 @@ import { AuthContext, MusicContext } from "../App"
 function AddMusicFromJSON() {
 
   const { jwtToken, setJwtToken } = useContext(AuthContext);
-  const { musicData, setMusicData, fetchData } = useContext(MusicContext);
+  const { fetchData } = useContext(MusicContext);
 
   const [jsonData, setJsonData] = useState("[]")
   const [isMusicFromJSON, setMusicFromJSON] = useState(false);
@@ -53,7 +53,6 @@ function AddMusicFromJSON() {
   async function batchCreateMusic(event) {
     event.preventDefault();
     setLoadPercent(0);
-    let i = 0;
     let data = JSON.parse(jsonData)
     let musicData = data.map((music) => {
       return {

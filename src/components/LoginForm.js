@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../styles/LoginForm.css';
-import { logInWithEmailAndPassword, logout } from "../services/firebase"
 import { authenticate } from "../services/api"
 import { AuthContext } from "../App"
 
@@ -54,7 +53,7 @@ function LoginForm() {
               <input type="password" name="loginPassword" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required />
             </div>
             <div className="forgot-pass">
-              <a href="#">Forgot Password?</a>
+              {/* <a href="#">Forgot Password?</a> */}
             </div>
             <div className="btn btn-outline-info">
               <button type="submit">login</button>

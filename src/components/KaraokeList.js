@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Music from "./Music";
 import { SearchContext, MusicContext } from "../App"
 import HeaderWithSort from "./HeaderWithSort";
@@ -6,8 +6,8 @@ import HeaderWithSort from "./HeaderWithSort";
 import "../styles/KaraokeList.css"
 
 function KaraokeList() {
-  const { searchData, setSearchData } = useContext(SearchContext);
-  const { musics, setMusics } = useContext(MusicContext);
+  const { searchData } = useContext(SearchContext);
+  const { musics } = useContext(MusicContext);
 
   const [sortColumn, setSortColumn] = useState("category");
   const [sortAsc, setSortAsc] = useState(true);
@@ -56,22 +56,22 @@ function KaraokeList() {
         <thead>
           <tr>
             <th onClick={() => { editSort("category") }} key="Categories">Categories
-              <HeaderWithSort isThisColumnSorted={sortColumn == "category"} sortAsc={sortAsc} />
+              <HeaderWithSort isThisColumnSorted={sortColumn === "category"} sortAsc={sortAsc} />
             </th>
             <th onClick={() => { editSort("serie") }} key="Serie">Serie
-              <HeaderWithSort isThisColumnSorted={sortColumn == "serie"} sortAsc={sortAsc} />
+              <HeaderWithSort isThisColumnSorted={sortColumn === "serie"} sortAsc={sortAsc} />
             </th>
             <th onClick={() => { editSort("name") }} key="Nom">Nom
-              <HeaderWithSort isThisColumnSorted={sortColumn == "name"} sortAsc={sortAsc} />
+              <HeaderWithSort isThisColumnSorted={sortColumn === "name"} sortAsc={sortAsc} />
             </th>
             <th onClick={() => { editSort("artist") }} key="Artiste">Artiste
-              <HeaderWithSort isThisColumnSorted={sortColumn == "artist"} sortAsc={sortAsc} />
+              <HeaderWithSort isThisColumnSorted={sortColumn === "artist"} sortAsc={sortAsc} />
             </th>
             <th onClick={() => { editSort("language") }} key="Langue">Langue
-              <HeaderWithSort isThisColumnSorted={sortColumn == "language"} sortAsc={sortAsc} />
+              <HeaderWithSort isThisColumnSorted={sortColumn === "language"} sortAsc={sortAsc} />
             </th>
             <th onClick={() => { editSort("vocal") }} key="Voix ?">Voix ?
-              <HeaderWithSort isThisColumnSorted={sortColumn == "vocal"} sortAsc={sortAsc} />
+              <HeaderWithSort isThisColumnSorted={sortColumn === "vocal"} sortAsc={sortAsc} />
             </th>
           </tr>
         </thead>

@@ -16,7 +16,7 @@ export async function authenticate(login, password) {
 
 export async function verifyJwtToken(jwtToken, logoutCallback) {
   try {
-    let resp = await axios.post(apiUrl + "/api/karaoke_list/verify", jwtToken, {
+    await axios.post(apiUrl + "/api/karaoke_list/verify", jwtToken, {
       headers: {
         'Content-Type': 'application/json'
       }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../styles/MusicForm.css';
 import { createMusic } from '../services/api';
 import { AuthContext, MusicContext } from "../App"
@@ -6,7 +6,7 @@ import { AuthContext, MusicContext } from "../App"
 
 function AddMusicForm() {
   const { jwtToken, setJwtToken } = useContext(AuthContext);
-  const { musicData, setMusicData, fetchData } = useContext(MusicContext);
+  const { fetchData } = useContext(MusicContext);
   const [musicFormData, setMusicFormData] = useState({
     name: "",
     serie: "",

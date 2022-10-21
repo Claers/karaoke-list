@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useCallback, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import './App.css';
 import { verifyJwtToken, getMusics } from './services/api';
-import { auth, db } from "./services/firebase"
-import { useAuthState } from "react-firebase-hooks/auth";
 import LoginForm from './components/LoginForm';
 import AddMusicForm from './components/AddMusicForm';
 import KaraokeSearch from './components/KaraokeSearch';
@@ -29,7 +27,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     verifyJwtToken(jwtToken, () => { setJwtToken("") });
-  }, [])
+  })
 
   return (
     <AuthContext.Provider value={auth}>
